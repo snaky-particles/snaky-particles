@@ -16,7 +16,7 @@ var Controller = function(){
 
 	this.possible_collectibles = [
 		{collectible: higgs, probability: 3e-3},
-		{collectible: electron, probability: .05}
+		{collectible: electron, probability: .5}
 		]
 	this.stage = new createjs.Stage("demoCanvas");
 }
@@ -34,9 +34,9 @@ Controller.prototype.spawn_collectibles = function(){
 	var rnd_pos = this.get_random_position();
 	if (this.is_position_free(rnd_pos)) {
 		collectible.position = rnd_pos;
+		this.collectibles.push(collectible);
+		this.add_view(new ParticleView(collectible));
 	}
-	this.collectibles.push(collectible);
-    this.add_view(new ParticleView(collectible));
 }
 
 Controller.prototype.start_game = function(){
