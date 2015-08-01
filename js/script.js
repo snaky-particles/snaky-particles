@@ -7,12 +7,12 @@ function init() {
 
     controller.start_game();
 
-    var p2 = new Particle({x: 10, y: 10});
+    var p2 = new Particle({x: 3, y: 3});
     p2.start_time = createjs.Ticker.getTime();
     p2.target = {
         time: p2.start_time + 1000,
-        x: 12,
-        y: 15
+        x: 10,
+        y: 7
     }
     var p2v = new ParticleView(p2);
     controller.add_view(p2v);
