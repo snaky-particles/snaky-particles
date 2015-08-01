@@ -7,8 +7,8 @@
     PhysicistView.prototype = new createjs.Shape();
 
     PhysicistView.prototype.update = function(){
-        this.x = this.model.position.x;
-        this.y = this.model.position.y;
+        this.x = cell_size * this.model.position.x;
+        this.y = cell_size * this.model.position.y;
     }
 
     window.PhysicistView = PhysicistView;

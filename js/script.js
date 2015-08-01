@@ -1,34 +1,19 @@
-var stage;
+var stage, controller;
 
 function init() {
-    stage = new createjs.Stage("demoCanvas");
+    controller = new Controller;
 
-    var dummyModel = {position: {x: 10, y: 20}};
-    var p = new PhysicistView(dummyModel);
-    stage.addChild(p);
-
-    createjs.Ticker.on("tick", tick);
-    createjs.Ticker.setFPS(60);
-
-    var time = 0;
-    
-    function tick(event) {
-        time = event.time - time > 400 ? event.time : time;
-    
-        // time based
-        if(event.time == time){
-            dummyModel.position.x += 20;        
-            p.update();
-            stage.update(event);
-        }
-    }
+    controller.start_game();
 
     resize();
 }
 
 function resize() {
-    stage.canvas.width = window.innerWidth;
-    stage.canvas.height = window.innerHeight;
+    var height = window.innerHeight;
+    var width = window.innerWidth;
+    window.cell_size = height > width ?
+        height / controller.grid_size.y :
+        width / controller.grid_size.x;
+    controller.stage.canvas.width = width;
+    controller.stage.canvas.height = height;
 }
-
-function 
