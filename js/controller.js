@@ -96,7 +96,7 @@ Controller.prototype.tick = function(event){
         var next_cell = this.get_next_cell_position();
 		var next_cell_content = this.is_position_occupied(next_cell);
 		this.snake.move(next_cell);
-		if (next_cell_content) this.snake.physicists[0].collect(next_cell_content);
+		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
 		this.spawn_collectibles();
         this.update_views();
 	}
@@ -125,11 +125,11 @@ Controller.prototype.is_position_occupied = function(position){
 	var phs = this.snake.physicists;
 	for (var ph in phs){
 		var pos = phs[ph].position;
-		if (pos.x == position.x && pos.y == position.y) return phs[ph];
+		if (pos.x == position.x && pos.y == position.y) return {physicist:phs[ph]};
 	}
 	for (var c in this.collectibles){
 		var pos = this.collectibles[c].position;
-		if (pos.x == position.x && pos.y == position.y) return this.collectibles[c];
+		if (pos.x == position.x && pos.y == position.y) return {collectible:this.collectibles[c]};
 	}
 	return null;
 }
@@ -153,6 +153,7 @@ Controller.prototype.remove_collectible = function(collectible){
 	if (i > -1) {
 	    this.views.splice(i, 1);
 	}
+	this.stage.removeChild(collectible.view);
 
 }
 
