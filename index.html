@@ -1,89 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>EaselJS demo: Time based animation</title>
-	<script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
-	<script>
-    var cellSize = 50;
-    var grid = [[]];
-    for(var i=0; i<100; i++){
-      grid[i] = [];
-      for(var j=0; j<100; j++){
-        grid[i][j] = {
-          x: cellSize / 2 + i * cellSize,
-          y: cellSize / 2 + j * cellSize
-        };
-      }
-    }
-		
-		var stage, circle, snake;
-		function init() {
-			stage = new createjs.Stage("demoCanvas");
-
-      snake = {};
-      snake.body = [];
-      for(var i=0; i<8; i++){
-			  circle = new createjs.Shape();
-			  circle.graphics.beginFill("red").drawCircle(0, 0, 20);
-        circle.direction = {x: 0, y: 0};
-			  stage.addChild(circle);
-        snake.body.push(circle);
-      }
-      snake.update = function(){
-        for(var i=this.body.length - 1; i>0; i--){
-          this.body[i].x = this.body[i-1].x;
-          this.body[i].y = this.body[i-1].y;
-          this.body[i].direction.x = this.body[i-1].direction.x;
-          this.body[i].direction.y = this.body[i-1].direction.y;
-        }
-      };
-			
-			createjs.Ticker.on("tick", tick);
-			createjs.Ticker.setFPS(20);
-
-      stage.on("stagemousedown", function(evt){
-        Math.abs(evt.stageX - snake.body[0].x) > Math.abs(evt.stageY - snake.body[0].y) ? 
-          function(){
-            snake.body[0].direction.x = evt.stageX > snake.body[0].x ? 1 : -1;
-            snake.body[0].direction.y = 0;
-          }() : function(){
-            snake.body[0].direction.y = evt.stageY > snake.body[0].y ? 1 : -1;
-            snake.body[0].direction.x = 0;
-          }();
-      });
-		}
-
-    var time = 0;
-		
-		function tick(event) {
-      time = event.time - time > 400 ? event.time : time;
-
-			// time based
-      if(event.time == time){
-        var head = snake.body[0];
-        snake.update();
-        head.x = (head.x <= stage.canvas.width && head.x >= 0) ?
-          head.x + head.direction.x * cellSize :
-            head.x < 0 ? stage.canvas.width : 0;
-        head.y = (head.y <= stage.canvas.height && head.y >= 0) ?
-          head.y + head.direction.y * cellSize :
-            head.y < 0 ? stage.canvas.height : 0;
-        
-        stage.update(event);
-      }
-		}
-	</script>
+	<title>Snakey Particles</title>
+	<script src="https://code.createjs.com/createjs-2015.05.21.combined.js"></script>
+	<script src="js/views/physicist.js"></script>
+	<script src="js/views/particle.js"></script>
+	<script src="js/models/physicist.js"></script>
+	<script src="js/models/particle.js"></script>
+	<script src="js/models/collectible.js"></script>
+	<script src="js/models/snake.js"></script>
+	<script src="js/controller.js"></script>
+	<script src="js/script.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body onload="init();">
-	<select onchange="createjs.Ticker.setFPS(Number(this.value));">
-		<option value="10">10 fps</option>
-		<option value="20" selected>20 fps</option>
-		<option value="30">30 fps</option>
-		<option value="40">40 fps</option>
-		<option value="50">50 fps</option>
-		<option value="60">60 fps</option>
-	</select><br>
-	<canvas id="demoCanvas" width="800" height="700">
+	<canvas id="demoCanvas" width="500" height="500">
 		alternate content
 	</canvas>
 </body>
