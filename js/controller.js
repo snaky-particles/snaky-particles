@@ -43,7 +43,8 @@ Controller.prototype.start_game = function(){
 	// this.session = new Session();
     var c = this;
 	createjs.Ticker.on("tick", function(e){c.tick(e);});
-	createjs.Ticker.setFPS(20);
+    createjs.Ticker.addEventListener("tick", this.stage);
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
 	this.bind_events();
 	this.time = 0;
 
@@ -57,6 +58,9 @@ Controller.prototype.start_game = function(){
 Controller.prototype.add_view = function(view){
     this.stage.addChild(view);
     this.views.push(view);
+    if(view.animate){
+        view.animate();
+    }
 }
 
 Controller.prototype.bind_events = function(){
