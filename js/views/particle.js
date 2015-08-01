@@ -18,6 +18,8 @@
             this.update = function(){};
             createjs.Tween.get(this).to(
                 { x: cell_size * this.model.target.x, y: cell_size * this.model.target.y },
+                // We do not want to have magnetically curved particles for now
+                // {guide:{ path:[0,0, 0,200,200,200, 200,0,0,0] }},
                 this.model.target.time - this.model.start_time
             ).call(function(){
                 own_view.update = ParticleView.prototype.update;

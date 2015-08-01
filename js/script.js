@@ -1,6 +1,9 @@
 var stage, controller;
 
 function init() {
+    // Do not use this for now...
+    // createjs.MotionGuidePlugin.install();
+
     controller = new Controller;
 
     resize();
