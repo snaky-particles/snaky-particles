@@ -36,6 +36,7 @@ Controller.prototype.spawn_collectibles = function(){
 		collectible.position = rnd_pos;
 	}
 	this.collectibles.push(collectible);
+    this.add_view(new ParticleView(collectible));
 }
 
 Controller.prototype.start_game = function(){
