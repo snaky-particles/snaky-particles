@@ -16,7 +16,7 @@ var Controller = function(){
 
 	this.possible_collectibles = [
 		{collectible: higgs, probability: 3e-3},
-		{collectible: electron, probability: .05}
+		{collectible: electron, probability: .5}
 		]
 	this.stage = new createjs.Stage("demoCanvas");
 }
