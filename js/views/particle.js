@@ -1,6 +1,7 @@
 (function(window) {
     function ParticleView(modelObject){
         this.model = modelObject;
+		this.model.view = this;
 		var dp = this.model.draw_properties;
 		var cs = window.cell_size;
         this.graphics
@@ -30,7 +31,11 @@
                 // We do not want to have magnetically curved particles for now
                 // {guide:{ path:[0,0, 0,200,200,200, 200,0,0,0] }},
                 this.model.target.time - this.model.start_time
-            ).call(function(){
+				)
+			.addEventListener("change", function(e){
+				controller.hit_test(e, own_view.model);
+				})
+			.call(function(){
                 own_view.update = ParticleView.prototype.update;
                 own_view.model.position.x = own_view.model.target.x;
                 own_view.model.position.y = own_view.model.target.y;

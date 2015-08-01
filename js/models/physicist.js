@@ -6,6 +6,8 @@ var Physicist = function(snake, position) {
 	this.snake = snake;
 };
 
-Physicist.prototype.catch = function(collectible) {
-
+Physicist.prototype.collect = function(collectible) {
+	this.bonus += " fat!";
+	controller.score += collectible.points;
+	controller.remove_collectible(collectible);
 };

@@ -19,6 +19,7 @@
         this.gotoAndPlay("run");
         this.currentAnimationFrame = Math.floor(Math.random() * 7);
         this.model = modelObject;
+		this.model.view = this;
     }
 
     PhysicistView.prototype = new createjs.Sprite();
