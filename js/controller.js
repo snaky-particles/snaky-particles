@@ -5,6 +5,7 @@ var Controller = function(){
 	this.collectibles = [];
     this.views = [];
 	this.snake = new Snake(this.initial_length);
+	this.stage = new createjs.Stage("demoCanvas");
 }
 
 Controller.prototype.update_views = function(){
@@ -16,7 +17,6 @@ Controller.prototype.update_views = function(){
 Controller.prototype.start_game = function(){
 	// this.session = new Session();
     var c = this;
-	this.stage = new createjs.Stage("demoCanvas");
 	createjs.Ticker.on("tick", function(e){c.tick(e);});
 	createjs.Ticker.setFPS(20);
 	this.bind_events();
@@ -76,7 +76,7 @@ Controller.prototype.tick = function(event){
 
 Controller.prototype.get_next_cell_position = function(){
 	var ph0 = this.snake.physicists[0];
-	var next_cell = ph0.position;
+	var next_cell = Object.create(ph0.position);
 	next_cell.x += ph0.direction.x;
 	next_cell.y += ph0.direction.y;
 	if (next_cell.x < 0) next_cell.x = this.grid_size.x - 1;

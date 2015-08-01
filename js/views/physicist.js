@@ -1,6 +1,6 @@
 (function(window) {
     function PhysicistView(modelObject){
-        this.graphics.beginFill("red").drawCircle(0, 0, 20);
+        this.graphics.beginFill("red").drawCircle(0, 0, window.cell_size * 0.9 / 2);
         this.model = modelObject;
     }
 

@@ -3,9 +3,9 @@ var stage, controller;
 function init() {
     controller = new Controller;
 
-    controller.start_game();
-
     resize();
+
+    controller.start_game();
 }
 
 function resize() {
