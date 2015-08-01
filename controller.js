@@ -7,8 +7,12 @@ var Controller = function(){
 }
 
 Controller.prototype.start_game = function(){
-	this.session = new Session();
+	// this.session = new Session();
+	this.stage = new createjs.Stage("demoCanvas");
+	createjs.Ticker.on("tick", this.tick);
+	createjs.Ticker.setFPS(20);
 	this.bind_events();
+	this.time = 0;
 }
 
 Controller.prototype.bind_events = function(){
@@ -39,8 +43,13 @@ Controller.prototype.turn_snake = function(direction){
 	this.snake.physicsts[0].direction = direction;
 }
 
-Controller.prototype.step = function(){
-	this.snake.move(next_cell);
+
+Controller.prototype.tick = function(event){
+	if(event.time - this.time > this.time_step){
+		this.time = event.time;
+		this.snake.move(next_cell);
+	}
+	stage.update(event);
 }
 
 Controller.prototype.get_next_cell_position = function(){
