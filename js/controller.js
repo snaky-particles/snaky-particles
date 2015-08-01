@@ -27,13 +27,15 @@ Controller.prototype.update_views = function(){
     }
 }
 
-this.prototype.spawn_collectibles = function(){
-	var collectible = Object.create(get_random_element_with_probabilities(this.possible_collectibles));
+Controller.prototype.spawn_collectibles = function(){
+	var collectible =get_random_element_with_probabilities(this.possible_collectibles);
 	if (!collectible) return;
+	collectible = Object.create(collectible);
 	var rnd_pos = this.get_random_position();
 	if (this.is_position_free(rnd_pos)) {
 		collectible.position = rnd_pos;
 	}
+	this.collectibles.push(collectible);
 }
 
 Controller.prototype.start_game = function(){
@@ -115,7 +117,20 @@ Controller.prototype.get_random_position = function(){
 		};
 }
 
-var get_random_element_with_probabilities(array){
+Controller.prototype.is_position_free = function(position){
+	var phs = this.snake.physicists;
+	for (ph in phs){
+		var pos = phs[ph].position;
+		if (pos.x == position.x && pos.y == position.y) return false;
+	}
+	for (c in this.collectibles){
+		var pos = this.collectibles[c].position;
+		if (pos.x == position.x && pos.y == position.y) return false;
+	}
+	return true;
+}
+
+var get_random_element_with_probabilities = function(array){
 	var previous_probability = 0;
 	var rnd = Math.random();
 	for (ind in array){
