@@ -6,3 +6,14 @@ var Snake = function(){
 	this.bonuses = [];
 	this.speed = 1;
 }
+
+Snake.prototype.add_physicist = function(physicist){
+	
+}
+
+Snake.prototype.add_bonus = function(bonus){
+	
+}
+
+Snake.prototype.remove_physicist = function(index){	
+}
