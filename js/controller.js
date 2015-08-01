@@ -148,6 +148,11 @@ Controller.prototype.remove_collectible = function(collectible){
 	if (i > -1) {
 	    this.collectibles.splice(i, 1);
 	}
+	i = -1;
+	i = this.views.indexOf(collectible.view);
+	if (i > -1) {
+	    this.views.splice(i, 1);
+	}
 
 }
 

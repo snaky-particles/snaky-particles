@@ -1,6 +1,7 @@
 (function(window) {
     function ParticleView(modelObject){
         this.model = modelObject;
+		this.model.view = this;
 		var dp = this.model.draw_properties;
 		var cs = window.cell_size;
         this.graphics

@@ -2,6 +2,7 @@
     function PhysicistView(modelObject){
         this.graphics.beginFill("red").drawCircle(0, 0, window.cell_size * 0.9 / 2);
         this.model = modelObject;
+		this.model.view = this;
     }
 
     PhysicistView.prototype = new createjs.Shape();
