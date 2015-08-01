@@ -30,7 +30,7 @@ Controller.prototype.update_views = function(){
 Controller.prototype.spawn_collectibles = function(){
 	var collectible =get_random_element_with_probabilities(this.possible_collectibles);
 	if (!collectible) return;
-	collectible = Object.create(collectible);
+	collectible = Object.create(collectible.collectible);
 	var rnd_pos = this.get_random_position();
 	if (this.is_position_free(rnd_pos)) {
 		collectible.position = rnd_pos;
