@@ -13,8 +13,8 @@
     ParticleView.prototype = new createjs.Shape();
 
     ParticleView.prototype.update = function(){
-        this.x = cell_size * this.model.position.x;
-        this.y = cell_size * this.model.position.y;
+        this.x = cell_size * this.model.position.x + cell_size / 2;
+        this.y = cell_size * this.model.position.y + cell_size / 2;
     }
 
     ParticleView.prototype.animate = function(){
@@ -23,7 +23,10 @@
             this.update();
             this.update = function(){};
             createjs.Tween.get(this).to(
-                { x: cell_size * this.model.target.x, y: cell_size * this.model.target.y },
+                {
+                    x: cell_size * this.model.target.x + cell_size / 2,
+                    y: cell_size * this.model.target.y + cell_size / 2 
+                },
                 // We do not want to have magnetically curved particles for now
                 // {guide:{ path:[0,0, 0,200,200,200, 200,0,0,0] }},
                 this.model.target.time - this.model.start_time
