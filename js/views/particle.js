@@ -25,7 +25,11 @@
             createjs.Tween.get(this).to(
                 { x: cell_size * this.model.target.x, y: cell_size * this.model.target.y },
                 this.model.target.time - this.model.start_time
-            ).call(function(){
+				)
+			.addEventListener("change", function(e){
+				controller.hit_test(e, own_view.model);
+				})
+			.call(function(){
                 own_view.update = ParticleView.prototype.update;
                 own_view.model.position.x = own_view.model.target.x;
                 own_view.model.position.y = own_view.model.target.y;
