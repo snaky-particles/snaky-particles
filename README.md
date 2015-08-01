@@ -1,2 +1,3 @@
 # Snaky Particles
-## CERN Webfest project
+
+Create a snake-style educational particle physics game during a weekend.
