@@ -7,6 +7,7 @@ var Controller = function(){
 	this.views = [];
 	this.snake = new Snake(this.initial_length);
 	this.canTurn = true;
+    this.facts_shown = {};
 
 	this.counter = 0;
 
@@ -162,7 +163,7 @@ Controller.prototype.tick = function(event){
 Controller.prototype.check_decays = function(){
     for(var pIndex in this.collectibles){
         var p = this.collectibles[pIndex];
-        if(p.decay_time && p.decays && p.decays.length && createjs.Ticker.getTime() > p.decay_time){
+        if(p.half_life && p.decays && p.decays.length && createjs.Ticker.getTime() > p.decay_time){
             var offset = {x: 0, y: 0};
             var counter = 0;
 			var decay = get_random_element_with_probabilities(p.decays);

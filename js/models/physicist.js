@@ -12,4 +12,12 @@ Physicist.prototype.collect = function(collectible) {
 	controller.remove_collectible(collectible);
 	controller.counter += 1;
     controller.update_interface();
+    if(collectible.facts){
+        if(!controller.facts_shown[collectible.type]){
+            $("#ticker").html(collectible.facts[0]);
+            controller.facts_shown[collectible.type] = 1;
+        } else {
+            $("#ticker").html(collectible.facts[controller.facts_shown[collectible.type]++]);
+        }
+    }
 };
