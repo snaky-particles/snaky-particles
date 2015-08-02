@@ -11,9 +11,7 @@
 				dp.outer_center.x * cs, dp.outer_center.y * cs, dp.outer_radius * cs)
 			.drawCircle(0, 0, cs * dp.outer_radius);
         // this.graphics.beginFill("red").drawCircle(0, 0, window.cell_size * 0.2 / 2);
-        createjs.Tween.get(this, {loop: true})
-            .to({ scaleX: 0.9, scaleY: 1.1 }, 200)
-            .to({ scaleX: 1.1, scaleY: 0.9 }, 200);
+      	this.model.animation_function(this); 
     }
 
     ParticleView.prototype = new createjs.Shape();
