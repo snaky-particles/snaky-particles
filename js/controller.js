@@ -43,7 +43,7 @@ Controller.prototype.start_game = function(){
 	// this.session = new Session();
     var c = this;
 	createjs.Ticker.on("tick", function(e){c.tick(e);});
-	createjs.Ticker.setFPS(20);
+	createjs.Ticker.timingMode = createjs.Ticker.RAF;
 	this.bind_events();
 	this.time = 0;
 	this.score = 0;
@@ -97,7 +97,9 @@ Controller.prototype.tick = function(event){
 		var next_cell_content = this.is_position_occupied(next_cell);
 		this.snake.move(next_cell);
 		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
-		this.spawn_collectibles();
+        if(this.collectibles.length < 2){
+		    this.spawn_collectibles();
+        }
         this.update_views();
 	}
 	this.stage.update(event);
@@ -154,7 +156,6 @@ Controller.prototype.remove_collectible = function(collectible){
 	    this.views.splice(i, 1);
 	}
 	this.stage.removeChild(collectible.view);
-
 }
 
 var get_random_element_with_probabilities = function(array){

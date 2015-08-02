@@ -1,7 +1,7 @@
 var stage, controller;
 
 var minimum_cell_size = 30;
-var maximum_grid_size = 100;
+var maximum_grid_size = 20;
 
 function init() {
     // Do not use this for now...

@@ -9,6 +9,7 @@
 				dp.inner_center.x * cs, dp.inner_center.y * cs , dp.inner_radius * cs,
 				dp.outer_center.x * cs, dp.outer_center.y * cs, dp.outer_radius * cs)
 			.drawCircle(0, 0, cs * dp.outer_radius);
+        // this.graphics.beginFill("red").drawCircle(0, 0, window.cell_size * 0.2 / 2);
     }
 
     ParticleView.prototype = new createjs.Shape();
