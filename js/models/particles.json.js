@@ -4,9 +4,9 @@ window.possible_particles = function(){ return [
 		mass: 125,
 		charge: 0,
 		points: 125,
-		appearence_probabilty: .03,
+		appearence_probabilty: .003,
 		half_life: 500,
-		decays: [{particles: ["W", "W"], probability: 1.}],
+		decays: [{particles: ["electron", "positron"], probability: 1.}],
 		draw_properties: {
 			colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
 			ratios: [0, 1],
@@ -21,7 +21,7 @@ window.possible_particles = function(){ return [
             	.to({ scaleX: 1.1, scaleY: 0.9 }, 200);
 		   },
 		facts:[
-			"Higgs boson was discovered in 2012 by CMS and ATLAS collaborations at LHC at CERN","The measured mass of the Higgs boson is around 126 Gev/c^2.","The spin of the Higgs boson is 0.","The Higgs boson is a particle which gives mass to elementary particles."	
+			"Higgs boson was discovered in 2012 by CMS and ATLAS collaborations at LHC at CERN","The measured mass of the Higgs boson is around 126 Gev/c^2.","The spin of the Higgs boson is 0.","The Higgs boson is a particle which gives mass to elementary particles.","The Higgs boson is not the most massive observed particle. The most massive is a top quark"	
 		 ]
 	},
 		
@@ -34,7 +34,7 @@ window.possible_particles = function(){ return [
 		draw_properties: {
 			colors: ["hsl(0, 100%, 50%)", "hsl(0, 40%, 50%)"],
 			ratios: [0, 1],
-			inner_radius: .04,
+			inner_radius: .16,
 			outer_radius: .17,
 			inner_center: {x: .01, y: .01},
 			outer_center: {x: 0, y: 0}
@@ -53,13 +53,13 @@ window.possible_particles = function(){ return [
 	 	type: "positron",
 		mass: 0.0005,
 		charge: 1,
-		points: 1,
+		points: 10,
 		appearence_probabilty: .03,
 		draw_properties: {
 			colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
 			ratios: [0, 1],
 			inner_radius: .02,
-			outer_radius: .04,
+			outer_radius: .17,
 			inner_center: {x: .01, y: .01},
 			outer_center: {x: 0, y: 0}
 		},
@@ -77,13 +77,15 @@ window.possible_particles = function(){ return [
 	 	type: "muon",
 		mass: 0.1,
 		charge: -1,
-		points: 1,
+		points: 30,
 		appearence_probabilty: .03,
+		half_life: 1000,
+		decays: [{particles: ["electron", "neutrino"], probability: 1.}],
 		draw_properties: {
 			colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
 			ratios: [0, 1],
 			inner_radius: .02,
-			outer_radius: .04,
+			outer_radius: .16,
 			inner_center: {x: .01, y: .01},
 			outer_center: {x: 0, y: 0}
 		},
@@ -93,7 +95,7 @@ window.possible_particles = function(){ return [
             	.to({ scaleX: 1.1, scaleY: 0.9 }, 200);
 		   },
 			facts:[
-				"The muon was discovered by Carl D. Anderson in 1936.","The mass of the muon is about 207 times the mass of the electron."
+				"The muon was discovered by Carl D. Anderson in 1936.","The mass of the muon is about 207 times the mass of the electron.","Muon decays to electron and two neutrinos. The half-life time is 2.2 ms."
 			  ]
 	},
 
@@ -104,10 +106,10 @@ window.possible_particles = function(){ return [
 		points: 1,
 		appearence_probabilty: .03,
 		draw_properties: {
-			colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
+			colors: ["silver", "hsl(120, 40%, 50%)"],
 			ratios: [0, 1],
 			inner_radius: .02,
-			outer_radius: .04,
+			outer_radius: .16,
 			inner_center: {x: .01, y: .01},
 			outer_center: {x: 0, y: 0}
 		},
@@ -128,10 +130,10 @@ window.possible_particles = function(){ return [
 		points: 1,
 		appearence_probabilty: .03,
 		draw_properties: {
-			colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
+			colors: ["hsl(40, 100%, 50%)", "hsl(60, 40%, 50%)"],
 			ratios: [0, 1],
 			inner_radius: .02,
-			outer_radius: .04,
+			outer_radius: .16,
 			inner_center: {x: .01, y: .01},
 			outer_center: {x: 0, y: 0}
 		},

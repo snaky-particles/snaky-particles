@@ -2,7 +2,7 @@ var Controller = function(){
 	this.grid_size = {x: 20, y: 20};
 	this.initial_length = 3;
 	this.time_step = 400;
-    this.maximum_spawns = 2;
+    this.maximum_spawns = 5;
 	this.collectibles = [];
 	this.views = [];
 	this.snake = new Snake(this.initial_length);
@@ -162,7 +162,9 @@ Controller.prototype.check_decays = function(){
         if(p.decay_time && p.decays && p.decays.length && createjs.Ticker.getTime() > p.decay_time){
             var offset = {x: 0, y: 0};
             var counter = 0;
-            for(var daughterInd in p.decays[0]){
+			var decay = get_random_element_with_probabilities(p.decays);
+			if (!decay) return;
+            for(var daughterInd in decay.particles) { 
                 if(counter % 2){
                     offset.x = - offset.x;
                     offset.y = - offset.y;
@@ -174,7 +176,7 @@ Controller.prototype.check_decays = function(){
                     offset.x++;
                     offset.y++;
                 }
-                var daughter = this.get_particle_by_type("electron", p.position);
+                var daughter = this.get_particle_by_type(decay.particles[counter], p.position);
                 daughter.start_time = createjs.Ticker.getTime();
                 daughter.target = {
                     time: daughter.start_time + 500,
