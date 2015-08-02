@@ -2,13 +2,13 @@ body {
     background: #144503;
     padding: 0px;
     margin: 0px;
+    overflow-y: hidden;
 }
 
 #demoCanvas {
-    margin: 40px auto 0px auto;
+    margin: 50px auto 0px auto;
     padding: 0px auto;
     background: #1F2921;
-    overflow: hidden;
 }
 
 /* .newsticker	 {
