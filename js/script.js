@@ -26,20 +26,23 @@ function init() {
 function resize() {
     var height = window.innerHeight - 50;
     var width = window.innerWidth;
-    if((height / minimum_cell_size) > maximum_grid_size){
-        window.cell_size = height / maximum_grid_size;
-        controller.grid_size.y = maximum_grid_size;
-    } else {
-        controller.grid_size.y = Math.floor(height / minimum_cell_size);
-        window.cell_size = minimum_cell_size;
-    }
-    if((width / minimum_cell_size) > maximum_grid_size){
-        window.cell_size = width / maximum_grid_size;
-        controller.grid_size.y = maximum_grid_size;
-    } else {
-        controller.grid_size.x = Math.floor(width / minimum_cell_size);
-        window.cell_size = minimum_cell_size;
-    }
+    window.cell_size = 50;
+    controller.grid_size.y = Math.floor(height / window.cell_size);
+    controller.grid_size.x = Math.floor(width / window.cell_size);
+    // if((height / minimum_cell_size) > maximum_grid_size){
+    //     cs = height / maximum_grid_size;
+    //     controller.grid_size.y = maximum_grid_size;
+    // } else {
+    //     controller.grid_size.y = Math.floor(height / minimum_cell_size);
+    //     cs = minimum_cell_size;
+    // }
+    // if((width / minimum_cell_size) > maximum_grid_size){
+    //     window.cell_size = width / maximum_grid_size ;
+    //     controller.grid_size.x = maximum_grid_size;
+    // } else {
+    //     controller.grid_size.x = Math.floor(width / minimum_cell_size);
+    //     window.cell_size = minimum_cell_size;
+    // }
     controller.stage.canvas.width = width;
     controller.stage.canvas.height = height;
 }
