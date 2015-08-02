@@ -23,6 +23,26 @@ function init() {
     controller.add_view(p2v);*/
 }
 
+$(function(){
+  // Bind the swipeHandler callback function to the swipe event on div.box
+  $( "#demoCanvas" ).on( "swipe", swipeHandler );
+  $.event.special.swipe.horizontalDistanceThreshold = 1;
+  $.event.special.swipe.verticalDistanceThreshold = 1000;
+ 
+  // Callback function references the event target and adds the 'swipe' class to it
+  function swipeHandler( event ){
+    // $( event.target ).addClass( "swipe" );
+    var direction = {x: 0, y: 0};
+    var start = event.swipestart.coords;
+    var stop = event.swipestop.coords;
+    var diff = {x: stop[0] - start[0], y: stop[1] - start[1]};
+    direction.x = Math.abs(diff.x) > Math.abs(diff.y) ? diff.x > 0 ? 1 : -1 : 0;
+    direction.y = Math.abs(diff.y) > Math.abs(diff.x) ? diff.y > 0 ? 1 : -1 : 0;
+    console.log(direction);
+    controller.turn_snake(direction);
+  }
+});
+
 function resize() {
     var height = window.innerHeight - 50;
     var width = window.innerWidth;
