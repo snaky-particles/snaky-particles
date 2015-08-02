@@ -1,6 +1,6 @@
 var Controller = function(){
 	this.grid_size = {x: 20, y: 20};
-	this.initial_length = 3;
+	this.initial_length = 1;
 	this.time_step = 400;
     this.maximum_spawns = 2;
 	this.collectibles = [];
