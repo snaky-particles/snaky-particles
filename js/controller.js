@@ -7,27 +7,16 @@ var Controller = function(){
 	this.views = [];
 	this.snake = new Snake(this.initial_length);
 	this.canTurn = true;
+
+
 	var pos0 = {x: -1, y: -1};
 	
-	var higgs = new Particle(pos0);
-	higgs.mass = 125;
-	higgs.type = "Higgs"
-	var electron = new Particle(pos0);
-	electron.mass = .0005;
-	electron.type = "electron";
-	higgs.draw_properties = {
-		colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
-		ratios: [0, 1],
-		inner_radius: .03,
-		outer_radius: .25,
-		inner_center: {x: .07, y: .07},
-		outer_center: {x: 0, y: 0}
-	};
+	var pp = possible_particles();
 
-	this.possible_collectibles = [
-		{collectible: higgs, probability: .5},
-		{collectible: electron, probability: .5}
-		]
+	for (var p in pp){
+		this.possible_collectibles.push({collectible: pp[p], probability: pp.p.appearence_probabilty});
+	}
+
 	this.stage = new createjs.Stage("demoCanvas");
 }
 
