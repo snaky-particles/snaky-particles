@@ -5,6 +5,7 @@ var Controller = function(){
 	this.collectibles = [];
 	this.views = [];
 	this.snake = new Snake(this.initial_length);
+	this.canTurn = true;
 	var pos0 = {x: -1, y: -1};
 	
 	var higgs = new Particle(pos0);
@@ -104,8 +105,9 @@ Controller.prototype.bind_events = function(){
 						break;
 					}
 		}
-		if (direction){
+		if (direction && c.canTurn){
 			c.turn_snake(direction);
+			c.canTurn = false;
 		}
 	}
 }
@@ -121,6 +123,7 @@ Controller.prototype.tick = function(event){
         var next_cell = this.get_next_cell_position();
 		var next_cell_content = this.is_position_occupied(next_cell);
 		this.snake.move(next_cell);
+		this.canTurn = true;
 		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
         if(this.collectibles.length < 2){
 		    this.spawn_collectibles();
