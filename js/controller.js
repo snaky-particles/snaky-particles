@@ -145,12 +145,13 @@ Controller.prototype.tick = function(event){
 	if(event.time - this.time > this.time_step){
 		this.time = event.time;
         var next_cell = this.get_next_cell_position();
-		var next_cell_content = this.is_position_occupied(next_cell);
 		this.snake.move(next_cell);
 		this.canTurn = true;
 		this.physicists_count();
-		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
-		if (next_cell_content && next_cell_content.physicist && event.time > 5000) this.game_over();
+		while (var next_cell_content = this.is_position_occupied(next_cell)){
+			if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
+			if (next_cell_content && next_cell_content.physicist && event.time > 5000) this.game_over();
+		}
         if(this.collectibles.length < this.maximum_spawns){
 		    this.spawn_collectibles();
         }
