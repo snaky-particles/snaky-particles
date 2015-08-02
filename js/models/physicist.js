@@ -10,4 +10,5 @@ Physicist.prototype.collect = function(collectible) {
 	this.bonus += " fat!";
 	controller.score += collectible.points;
 	controller.remove_collectible(collectible);
+	controller.counter += 1;
 };

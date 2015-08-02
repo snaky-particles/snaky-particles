@@ -8,6 +8,7 @@ var Controller = function(){
 	this.snake = new Snake(this.initial_length);
 	this.canTurn = true;
 
+	this.counter = 0;
 
 	var pos0 = {x: -1, y: -1};
 	
@@ -47,6 +48,15 @@ Controller.prototype.add_collectible = function(collectible, position){
     }
     this.collectibles.push(collectible);
     this.add_view(new ParticleView(collectible));
+}
+
+Controller.prototype.add_physicist = function(){
+	//var new_physicist = Object.create(this.snake.physicists[this.snake.physicists.length - 1]);
+	var	new_physicist = new Physicist(this, {x: 0, y: 0});//Object.create(physicist.physicist);
+	new_physicist.position = this.snake.physicists[this.snake.physicists.length - 1].position;
+	new_physicist.direction = this.snake.physicists[this.snake.physicists.length - 1].direction;
+	this.snake.physicists.push(new_physicist);
+	this.add_view(new PhysicistView(new_physicist));
 }
 
 Controller.prototype.start_game = function(){
@@ -134,7 +144,9 @@ Controller.prototype.tick = function(event){
 		var next_cell_content = this.is_position_occupied(next_cell);
 		this.snake.move(next_cell);
 		this.canTurn = true;
+		this.physicists_count();
 		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
+		if (next_cell_content && next_cell_content.physicist && event.time > 5000) this.game_over();
         if(this.collectibles.length < this.maximum_spawns){
 		    this.spawn_collectibles();
         }
@@ -240,4 +252,17 @@ var get_random_element_with_probabilities = function(array){
 		previous_probability += probability;
 	}
 	return null;
+}
+
+
+Controller.prototype.physicists_count = function(){
+	if(this.counter >= 1) {
+		this.add_physicist();
+		this.counter = 0;
+	}
+}
+
+Controller.prototype.game_over = function(){
+	alert("Game Over!");
+	// ...
 }
