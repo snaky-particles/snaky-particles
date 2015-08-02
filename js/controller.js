@@ -19,6 +19,8 @@ var Controller = function(){
 		this.possible_collectibles.push({collectible: pp[p], probability: pp[p].appearence_probabilty});
 	}
 
+    createjs.DisplayObject.suppressCrossDomainErrors = true;
+
 	this.stage = new createjs.Stage("demoCanvas");
 }
 
@@ -33,11 +35,18 @@ Controller.prototype.spawn_collectibles = function(){
 	if (!collectible) return;
 	collectible = Object.create(collectible.collectible);
 	var rnd_pos = this.get_random_position();
-	if (! this.is_position_occupied(rnd_pos)) {
-		collectible.position = rnd_pos;
-		this.collectibles.push(collectible);
-		this.add_view(new ParticleView(collectible));
-	}
+	if (!this.is_position_occupied(rnd_pos)) {
+        this.add_collectible(collectible, rnd_pos);
+    }
+}
+
+Controller.prototype.add_collectible = function(collectible, position){
+    collectible.position = position;
+    if(collectible.halflife_time > 0){
+        collectible.decay_time = createjs.Ticker.getTime() + collectible.halflife_time;
+    }
+    this.collectibles.push(collectible);
+    this.add_view(new ParticleView(collectible));
 }
 
 Controller.prototype.start_game = function(){
@@ -131,7 +140,42 @@ Controller.prototype.tick = function(event){
         }
         this.update_views();
 	}
+    this.check_decays();
 	this.stage.update(event);
+}
+
+Controller.prototype.check_decays = function(){
+    for(var pIndex in this.collectibles){
+        var p = this.collectibles[pIndex];
+        if(p.decay_time && p.decays && p.decays.length && createjs.Ticker.getTime() > p.decay_time){
+            var offset = {x: 0, y: 0};
+            var counter = 0;
+            for(var daughterInd in p.decays[0]){
+                if(counter % 2){
+                    offset.x = Math.floor((Math.random() * this.grid_size.x / 10)) % this.grid_size.x;
+                    offset.y = Math.floor((Math.random() * this.grid_size.y / 10)) % this.grid_size.y;
+                } else {
+                    offset.x = - offset.x;
+                    offset.y = - offset.y;
+                }
+                while(this.is_position_occupied(offset)){
+                    offset.x++;
+                    offset.y++;
+                }
+                var daughter = new Particle(p.position);
+                daughter.start_time = createjs.Ticker.getTime();
+                daughter.target = {
+                    time: daughter.start_time + 500,
+                    x: daughter.position.x + offset.x,
+                    y: daughter.position.y + offset.y
+                }
+                daughter.decays = null;
+                this.add_collectible(daughter, p.position);
+                counter++;
+            }
+            this.remove_collectible(p);
+        }
+    }
 }
 
 Controller.prototype.get_next_cell_position = function(){
@@ -165,10 +209,10 @@ Controller.prototype.is_position_occupied = function(position){
 	return null;
 }
 
-Controller.prototype.hit_test = function(e, particle){
+Controller.prototype.hit_test = function(particle){
 	for (var ph_i in this.snake.physicists){
 		var ph = this.snake.physicists[ph_i];
-		if (ph.view.hitTest(e.x, e.y)) {
+		if (ph.view.hitTest(particle.position.x, particle.position.y)) {
 			this.ph.collect(particle);
 		}
 	}

@@ -11,7 +11,7 @@
 				dp.outer_center.x * cs, dp.outer_center.y * cs, dp.outer_radius * cs)
 			.drawCircle(0, 0, cs * dp.outer_radius);
         // this.graphics.beginFill("red").drawCircle(0, 0, window.cell_size * 0.2 / 2);
-      	this.model.animation_function(this); 
+        this.animate();
     }
 
     ParticleView.prototype = new createjs.Shape();
@@ -35,15 +35,18 @@
                 // {guide:{ path:[0,0, 0,200,200,200, 200,0,0,0] }},
                 this.model.target.time - this.model.start_time
 				)
-			.addEventListener("change", function(e){
-				controller.hit_test(e, own_view.model);
-				})
+			.addEventListener("change", function(){
+				controller.hit_test(own_view.model);
+	        })
 			.call(function(){
                 own_view.update = ParticleView.prototype.update;
                 own_view.model.position.x = own_view.model.target.x;
                 own_view.model.position.y = own_view.model.target.y;
             });
         }
+
+		this.model.animation_function(this);
+
     }
 
     window.ParticleView = ParticleView;

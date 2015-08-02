@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Snakey Particles</title>
+	<title>Snaky Particles</title>
 	<script src="https://code.createjs.com/createjs-2015.05.21.combined.js"></script>
 	<script src="js/views/physicist.js"></script>
 	<script src="js/views/particle.js"></script>
@@ -12,11 +12,41 @@
 	<script src="js/models/snake.js"></script>
 	<script src="js/controller.js"></script>
 	<script src="js/script.js"></script>
+
+	<!--script src="js/newsticker.js"></script-->
+	<!--script src="js/navigation.js"></script-->
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
-<body onload="init();">
-	<canvas id="demoCanvas" width="500" height="500">
+<body onload="init();">		
+<div>
+	<!--canvas id="navigation">alternate content</canvas-->
+
+	<article class="navbar">
+  	<ul>
+  		<li> <img src="./img/logo.png" alt="logo" style="width:120px;height:120px;"> </li>
+    	<li><a href="index.html">Restart</a></li>
+    	<li><a href="settings.html">Settings</a></li>
+    	<li><a href="scorelist.html">Scorelist</a></li>
+    	<li><a href="about.html">About</a></li>
+    	<li><a href="end.html">Quit</a></li>
+  	</ul>
+	</article>
+</div>
+
+<div>
+	<!--canvas id="newsticker">alternate content</canvas-->
+	<article class="newsticker">
+  	Here will be presented useful information about particles... =)
+  	</article>
+</div>
+
+	
+	<div>
+	<canvas id="demoCanvas" width="500" heigth="500">
 		alternate content
 	</canvas>
+	</div>
 </body>
 </html>

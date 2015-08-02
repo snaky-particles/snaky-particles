@@ -13,9 +13,10 @@ var Particle = function(position){
 	this.charge = 0;
 	this.start_time = 1234;
 	this.decay_time = 4444;
+    this.halflife_time = 1000;
 	this.target = null;
 	this.velocity = null;
 	this.points = 125;
 	this.parent_type = "W";
-	this.decays = [{particles: ["W", "W"], probability: .3 }]
+	this.decays = [{particles: ["W", "W"], probability: 1}]
 }
