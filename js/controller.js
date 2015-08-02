@@ -5,6 +5,7 @@ var Controller = function(){
 	this.collectibles = [];
 	this.views = [];
 	this.snake = new Snake(this.initial_length);
+	this.canTurn = true;
 	var pos0 = {x: -1, y: -1};
 	
 	var higgs = new Particle(pos0);
@@ -72,23 +73,49 @@ Controller.prototype.bind_events = function(){
     var c = this;
 	window.onkeydown = function(e){
 		var direction = null;
+		var dir = {x: c.snake.physicists[0].direction.x, y: c.snake.physicists[0].direction.y};
+
 		switch (e.keyCode){
 			case 37:
-				direction = {x: -1, y: 0};
-				break;
+			case 65:
+				if(dir.x == 1)
+					{
+						break;}
+				else {
+						direction = {x: -1, y: 0};
+						break;
+					}
 			case 38:
-				direction = {x: 0, y: -1};
-				break;
+			case 87:
+				if(dir.y == 1)
+					{
+						break;}
+				else {
+						direction = {x: 0, y: -1};
+						break;
+					}
 			case 39:
-				direction = {x: 1, y: 0};
-				break;
+			case 68:
+				if(dir.x == -1)
+					{
+						break;}
+				else {
+						direction = {x: 1, y: 0};
+						break;
+				}
 			case 40:
-				direction = {x: 0, y: 1};
-				break;
-
+			case 83:
+				if(dir.y == -1)
+					{
+						break;}
+				else {
+						direction = {x: 0, y: 1};
+						break;
+					}
 		}
-		if (direction){
+		if (direction && c.canTurn){
 			c.turn_snake(direction);
+			c.canTurn = false;
 		}
 	}
 }
@@ -105,6 +132,7 @@ Controller.prototype.tick = function(event){
         var next_cell = this.get_next_cell_position();
 		var next_cell_content = this.is_position_occupied(next_cell);
 		this.snake.move(next_cell);
+		this.canTurn = true;
 		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
         if(this.collectibles.length < 2){
 		    this.spawn_collectibles();
