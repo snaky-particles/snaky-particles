@@ -35,14 +35,15 @@
                 // {guide:{ path:[0,0, 0,200,200,200, 200,0,0,0] }},
                 this.model.target.time - this.model.start_time
 				)
-			.addEventListener("change", function(){
-				controller.hit_test(own_view.model);
-	        })
-			.call(function(){
+            .call(function(){
                 own_view.update = ParticleView.prototype.update;
                 own_view.model.position.x = own_view.model.target.x;
                 own_view.model.position.y = own_view.model.target.y;
-            });
+            })
+			.addEventListener("change", function(){
+				controller.hit_test(own_view.model);
+	        })
+			;
         } else {
             createjs.Tween.get(this, {loop: true})
                 .to({ scaleX: 0.9, scaleY: 1.1 }, 200)
