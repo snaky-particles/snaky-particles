@@ -13,8 +13,10 @@ var Controller = function(){
 	
 	var pp = possible_particles();
 
+	this.possible_collectibles = [];
+
 	for (var p in pp){
-		this.possible_collectibles.push({collectible: pp[p], probability: pp.p.appearence_probabilty});
+		this.possible_collectibles.push({collectible: pp[p], probability: pp[p].appearence_probabilty});
 	}
 
 	this.stage = new createjs.Stage("demoCanvas");
