@@ -64,20 +64,41 @@ Controller.prototype.bind_events = function(){
     var c = this;
 	window.onkeydown = function(e){
 		var direction = null;
+		var dir = {x: c.snake.physicists[0].direction.x, y: c.snake.physicists[0].direction.y};
+
 		switch (e.keyCode){
 			case 37:
-				direction = {x: -1, y: 0};
-				break;
+				if(dir.x == 1)
+					{
+						break;}
+				else {
+						direction = {x: -1, y: 0};
+						break;
+					}
 			case 38:
-				direction = {x: 0, y: -1};
-				break;
+				if(dir.y == 1)
+					{
+						break;}
+				else {
+						direction = {x: 0, y: -1};
+						break;
+					}
 			case 39:
-				direction = {x: 1, y: 0};
-				break;
+			if(dir.x == -1)
+					{
+						break;}
+				else {
+						direction = {x: 1, y: 0};
+						break;
+				}
 			case 40:
-				direction = {x: 0, y: 1};
-				break;
-
+				if(dir.y == -1)
+					{
+						break;}
+				else {
+						direction = {x: 0, y: 1};
+						break;
+					}
 		}
 		if (direction){
 			c.turn_snake(direction);
