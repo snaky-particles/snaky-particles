@@ -2,7 +2,7 @@ var Controller = function(){
 	this.grid_size = {x: 20, y: 20};
 	this.initial_length = 3;
 	this.time_step = 400;
-    this.maximum_spawns = 100;
+    this.maximum_spawns = 2;
 	this.collectibles = [];
 	this.views = [];
 	this.snake = new Snake(this.initial_length);
@@ -37,12 +37,12 @@ Controller.prototype.spawn_collectibles = function(){
 	collectible = Object.create(collectible.collectible);
 	var rnd_pos = this.get_random_position();
 	if (!this.is_position_occupied(rnd_pos)) {
-        this.add_collectible(collectible, rnd_pos);
+        collectible.position = rnd_pos;
+        this.add_collectible(collectible);
     }
 }
 
-Controller.prototype.add_collectible = function(collectible, position){
-    collectible.position = position;
+Controller.prototype.add_collectible = function(collectible){
     if(collectible.halflife_time > 0){
         collectible.decay_time = createjs.Ticker.getTime() + collectible.halflife_time;
     }
@@ -164,11 +164,11 @@ Controller.prototype.check_decays = function(){
             var counter = 0;
             for(var daughterInd in p.decays[0]){
                 if(counter % 2){
-                    offset.x = Math.floor((Math.random() * this.grid_size.x / 10)) % this.grid_size.x;
-                    offset.y = Math.floor((Math.random() * this.grid_size.y / 10)) % this.grid_size.y;
-                } else {
                     offset.x = - offset.x;
                     offset.y = - offset.y;
+                } else {
+                    offset.x = Math.floor((Math.random() * this.grid_size.x / 10)) % this.grid_size.x;
+                    offset.y = Math.floor((Math.random() * this.grid_size.y / 10)) % this.grid_size.y;
                 }
                 while(this.is_position_occupied(offset)){
                     offset.x++;
@@ -182,7 +182,7 @@ Controller.prototype.check_decays = function(){
                     y: daughter.position.y + offset.y
                 }
                 daughter.decays = null;
-                this.add_collectible(daughter, p.position);
+                this.add_collectible(daughter);
                 counter++;
             }
             this.remove_collectible(p);
