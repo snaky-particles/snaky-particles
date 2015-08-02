@@ -68,6 +68,7 @@ Controller.prototype.bind_events = function(){
 
 		switch (e.keyCode){
 			case 37:
+			case 65:
 				if(dir.x == 1)
 					{
 						break;}
@@ -76,6 +77,7 @@ Controller.prototype.bind_events = function(){
 						break;
 					}
 			case 38:
+			case 87:
 				if(dir.y == 1)
 					{
 						break;}
@@ -84,7 +86,8 @@ Controller.prototype.bind_events = function(){
 						break;
 					}
 			case 39:
-			if(dir.x == -1)
+			case 68:
+				if(dir.x == -1)
 					{
 						break;}
 				else {
@@ -92,6 +95,7 @@ Controller.prototype.bind_events = function(){
 						break;
 				}
 			case 40:
+			case 83:
 				if(dir.y == -1)
 					{
 						break;}
