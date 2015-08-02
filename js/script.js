@@ -28,6 +28,7 @@ $(function(){
   $( "#demoCanvas" ).on( "swipe", swipeHandler );
   $.event.special.swipe.horizontalDistanceThreshold = 1;
   $.event.special.swipe.verticalDistanceThreshold = 1000;
+  $.mobile.loader.prototype.options.disabled = true;
  
   // Callback function references the event target and adds the 'swipe' class to it
   function swipeHandler( event ){
