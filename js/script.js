@@ -6,7 +6,6 @@ var maximum_grid_size = 20;
 function init() {
     // Do not use this for now...
     // createjs.MotionGuidePlugin.install();
-
     controller = new Controller;
 
     resize();
@@ -25,7 +24,7 @@ function init() {
 }
 
 function resize() {
-    var height = window.innerHeight;
+    var height = window.innerHeight - 50;
     var width = window.innerWidth;
     if((height / minimum_cell_size) > maximum_grid_size){
         window.cell_size = height / maximum_grid_size;

@@ -11,4 +11,5 @@ Physicist.prototype.collect = function(collectible) {
 	controller.score += collectible.points;
 	controller.remove_collectible(collectible);
 	controller.counter += 1;
+    controller.update_interface();
 };

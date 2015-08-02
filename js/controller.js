@@ -11,6 +11,7 @@ var Controller = function(){
 	this.counter = 0;
 
 	var pos0 = {x: -1, y: -1};
+    this.score = 0;
 	
 	var pp = possible_particles();
 
@@ -67,6 +68,8 @@ Controller.prototype.start_game = function(){
 	this.bind_events();
 	this.time = 0;
 	this.score = 0;
+
+    this.update_interface();
 
     for(phModel in controller.snake.physicists){
         var model = controller.snake.physicists[phModel];
@@ -277,6 +280,24 @@ Controller.prototype.physicists_count = function(){
 }
 
 Controller.prototype.game_over = function(){
-	alert("Game Over!");
-	// ...
+	alert("Game Over!\nScore: " + this.score);
+	this.snake = new Snake(this.initial_length);
+	this.canTurn = true;
+	this.counter = 0;
+	createjs.Ticker.reset();
+	createjs.Ticker.init();
+	for(var view in this.views){
+		this.stage.removeChild(this.views[view]);
+    }
+	for(var collectible in this.collectibles){
+		this.stage.removeChild(this.collectibles[collectible]);
+    }
+    this.collectibles = [];
+	this.views = [];
+	this.stage.clear();
+	this.start_game()// ...
+}
+
+Controller.prototype.update_interface = function(){
+    $("#score").html(this.score);
 }
