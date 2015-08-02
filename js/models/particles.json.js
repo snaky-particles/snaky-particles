@@ -78,7 +78,7 @@ window.possible_particles = function(){ return [
 		mass: 0.1,
 		charge: -1,
 		points: 30,
-		appearence_probabilty: .03,
+		appearence_probabilty: .1,
 		half_life: 1000,
 		decays: [{particles: ["electron", "neutrino"], probability: 1.}],
 		draw_properties: {
