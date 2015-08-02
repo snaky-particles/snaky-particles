@@ -9,6 +9,7 @@ var Controller = function(){
 	this.canTurn = true;
 	this.counter = 0;
 	var pos0 = {x: -1, y: -1};
+    this.score = 0;
 	
     createjs.DisplayObject.suppressCrossDomainErrors = true;
 
@@ -77,6 +78,8 @@ Controller.prototype.start_game = function(){
 	this.bind_events();
 	this.time = 0;
 	this.score = 0;
+
+    this.update_interface();
 
     for(phModel in controller.snake.physicists){
         var model = controller.snake.physicists[phModel];
@@ -275,4 +278,8 @@ Controller.prototype.physicists_count = function(){
 Controller.prototype.game_over = function(){
 	alert("Game Over!");
 	// ...
+}
+
+Controller.prototype.update_interface = function(){
+    $("#score").html(this.score);
 }
