@@ -2,6 +2,7 @@
     function PhysicistView(modelObject){
         // this.graphics.beginFill("red").drawCircle(0, 0, window.cell_size * 0.9 / 2);
         // TODO: read those values from json/whatever
+        createjs.Sprite.call(this);
         var width = 131;
         this.width = width;
         var height = 135;

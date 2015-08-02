@@ -2,6 +2,7 @@ var Controller = function(){
 	this.grid_size = {x: 20, y: 20};
 	this.initial_length = 3;
 	this.time_step = 400;
+    this.maximum_spawns = 100;
 	this.collectibles = [];
 	this.views = [];
 	this.snake = new Snake(this.initial_length);
@@ -134,7 +135,7 @@ Controller.prototype.tick = function(event){
 		this.snake.move(next_cell);
 		this.canTurn = true;
 		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
-        if(this.collectibles.length < 2){
+        if(this.collectibles.length < this.maximum_spawns){
 		    this.spawn_collectibles();
         }
         this.update_views();
