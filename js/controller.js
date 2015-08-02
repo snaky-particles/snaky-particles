@@ -273,6 +273,20 @@ Controller.prototype.physicists_count = function(){
 }
 
 Controller.prototype.game_over = function(){
-	alert("Game Over!");
-	// ...
+	alert("Game Over!\nScore: " + this.score);
+	this.snake = new Snake(this.initial_length);
+	this.canTurn = true;
+	this.counter = 0;
+	createjs.Ticker.reset();
+	createjs.Ticker.init();
+	for(var view in this.views){
+		this.stage.removeChild(this.views[view]);
+    }
+	for(var collectible in this.collectibles){
+		this.stage.removeChild(this.collectibles[collectible]);
+    }
+    this.collectibles = [];
+	this.views = [];
+	this.stage.clear();
+	this.start_game()// ...
 }
