@@ -156,6 +156,7 @@ Controller.prototype.tick = function(event){
 		this.canTurn = true;
 		this.physicists_count();
 		if (next_cell_content && next_cell_content.collectible) this.snake.physicists[0].collect(next_cell_content.collectible);
+		if (next_cell_content && next_cell_content.physicist && event.time > 5000) this.game_over();
         if(this.collectibles.length < this.maximum_spawns){
 		    this.spawn_collectibles();
         }
@@ -265,8 +266,13 @@ var get_random_element_with_probabilities = function(array){
 
 
 Controller.prototype.physicists_count = function(){
-	if(this.counter >= 3) {
+	if(this.counter >= 1) {
 		this.add_physicist();
 		this.counter = 0;
 	}
+}
+
+Controller.prototype.game_over = function(){
+	alert("Game Over!");
+	// ...
 }
