@@ -1,5 +1,6 @@
 (function(window) {
     function ParticleView(modelObject){
+        createjs.Shape.call(this);
         this.model = modelObject;
 		this.model.view = this;
 		var dp = this.model.draw_properties;
