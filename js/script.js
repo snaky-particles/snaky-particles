@@ -31,6 +31,7 @@ $(function(){
  
   // Callback function references the event target and adds the 'swipe' class to it
   function swipeHandler( event ){
+    event.preventDefault();
     // $( event.target ).addClass( "swipe" );
     var direction = {x: 0, y: 0};
     var start = event.swipestart.coords;
