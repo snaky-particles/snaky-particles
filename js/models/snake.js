@@ -3,7 +3,7 @@ var Snake = function(n_physicisits){
 	for (var i = 0; i < n_physicisits; i++){
 		this.physicists.push(new Physicist(this, {x: 0, y: 0}));
 	}
-    this.physicists[0].direction = {x: 0, y: 0};
+    this.physicists[0].direction = {x: 1, y: 0};
 	this.new_physicists = [];
 	this.bonuses = [];
 	this.speed = 1;
