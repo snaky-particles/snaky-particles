@@ -13,9 +13,17 @@ var Controller = function(){
 	var electron = new Particle(pos0);
 	electron.mass = .0005;
 	electron.type = "electron";
+	higgs.draw_properties = {
+		colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
+		ratios: [0, 1],
+		inner_radius: .03,
+		outer_radius: .25,
+		inner_center: {x: .07, y: .07},
+		outer_center: {x: 0, y: 0}
+	};
 
 	this.possible_collectibles = [
-		{collectible: higgs, probability: 3e-3},
+		{collectible: higgs, probability: .5},
 		{collectible: electron, probability: .5}
 		]
 	this.stage = new createjs.Stage("demoCanvas");
@@ -91,6 +99,7 @@ Controller.prototype.turn_snake = function(direction){
 
 
 Controller.prototype.tick = function(event){
+    if(event.paused) return;
 	if(event.time - this.time > this.time_step){
 		this.time = event.time;
         var next_cell = this.get_next_cell_position();
