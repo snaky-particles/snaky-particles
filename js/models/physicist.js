@@ -1,9 +1,10 @@
-var Physicist = function(snake, position) {
+var Physicist = function(snake, position, delay) {
 	this.direction = 0;
 	this.position = position;
 	this.name = 'Fermi';
 	this.bonus = '';
 	this.snake = snake;
+	this.delay = delay;
 };
 
 Physicist.prototype.collect = function(collectible) {

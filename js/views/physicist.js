@@ -17,7 +17,7 @@
         this.scaleY = scale;
         this.spriteSheet = spriteSheet;
         this.gotoAndPlay("run");
-        this.currentAnimationFrame = Math.floor(Math.random() * 7);
+        this.currentAnimationFrame = modelObject.delay;
         this.model = modelObject;
 		this.model.view = this;
     }
