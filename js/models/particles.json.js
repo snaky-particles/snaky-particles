@@ -5,13 +5,13 @@ window.possible_particles = function(){ return [
 		charge: 0,
 		points: 125,
 		appearence_probabilty: .03,
-		half_life: 5,
+		half_life: 500,
 		decays: [{particles: ["W", "W"], probability: 1.}],
 		draw_properties: {
-			colors: ["hsl(0, 100%, 50%)", "hsl(0, 40%, 50%)"],
+			colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
 			ratios: [0, 1],
 			inner_radius: .03,
-			outer_radius: .13,
+			outer_radius: .23,
 			inner_center: {x: .07, y: .07},
 			outer_center: {x: 0, y: 0}
 		},
@@ -32,10 +32,10 @@ window.possible_particles = function(){ return [
 		points: 1,
 		appearence_probabilty: .03,
 		draw_properties: {
-			colors: ["hsl(120, 100%, 50%)", "hsl(120, 40%, 50%)"],
+			colors: ["hsl(0, 100%, 50%)", "hsl(0, 40%, 50%)"],
 			ratios: [0, 1],
-			inner_radius: .02,
-			outer_radius: .04,
+			inner_radius: .04,
+			outer_radius: .17,
 			inner_center: {x: .01, y: .01},
 			outer_center: {x: 0, y: 0}
 		},

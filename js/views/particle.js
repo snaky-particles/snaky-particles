@@ -40,9 +40,10 @@
                 own_view.model.position.x = own_view.model.target.x;
                 own_view.model.position.y = own_view.model.target.y;
             })
+			/*
 			.addEventListener("change", function(){
 				controller.hit_test(own_view.model);
-	        })
+	        })*/
 			;
         }
 

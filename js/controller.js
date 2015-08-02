@@ -43,8 +43,8 @@ Controller.prototype.spawn_collectibles = function(){
 }
 
 Controller.prototype.add_collectible = function(collectible){
-    if(collectible.halflife_time > 0){
-        collectible.decay_time = createjs.Ticker.getTime() + collectible.halflife_time;
+    if(collectible.half_life > 0){
+        collectible.decay_time = createjs.Ticker.getTime() + collectible.half_life;
     }
     this.collectibles.push(collectible);
     this.add_view(new ParticleView(collectible));
@@ -174,7 +174,7 @@ Controller.prototype.check_decays = function(){
                     offset.x++;
                     offset.y++;
                 }
-                var daughter = new Particle(p.position);
+                var daughter = this.get_particle_by_type("electron", p.position);
                 daughter.start_time = createjs.Ticker.getTime();
                 daughter.target = {
                     time: daughter.start_time + 500,
@@ -188,6 +188,18 @@ Controller.prototype.check_decays = function(){
             this.remove_collectible(p);
         }
     }
+}
+
+Controller.prototype.get_particle_by_type = function(ptype, position){
+	for (var pIndex in this.possible_collectibles){
+		var cc = this.possible_collectibles[pIndex];
+		if (cc.collectible.type == ptype){
+			cc = Object.create(cc.collectible);
+			var pos = Object.create(position);
+			cc.position = pos;
+			return cc;
+		}
+	}
 }
 
 Controller.prototype.get_next_cell_position = function(){
@@ -225,7 +237,7 @@ Controller.prototype.hit_test = function(particle){
 	for (var ph_i in this.snake.physicists){
 		var ph = this.snake.physicists[ph_i];
 		if (ph.view.hitTest(particle.position.x, particle.position.y)) {
-			this.ph.collect(particle);
+			ph.collect(particle);
 		}
 	}
 }
