@@ -1,67 +1,9 @@
 body {
-    background: #144503;
+    background: #FFFCF3;
     padding: 0px;
     margin: 0px;
-    overflow-y: hidden;
 }
 
-#demoCanvas {
-    margin: 50px auto 0px auto;
-    padding: 0px auto;
-    background: #1F2921;
+#screen {
+    border: 1px solid #CC8A53;
 }
-
-.ui-loader {
-    display: none;
-}
-
-/* .newsticker	 {
-	text-align: center;
-	font-size:20px;
-	color: #FFFFFF;
-    background-color: #006666;
-	padding:1px 8px;
-	width: 100%;
-	margin-top: 3px;
-}
-
-
-.navbar	 {
-	text-align: center;
-	font-size:20px;
-	color: #FFFFFF;
-    background-color: #006666;
-	padding:1px 8px;
-	width: 100%
-}
-
-
-ul {
-    list-style-type: none;
-    margin: 20px;
-    padding: 1px;
-    overflow: hidden
-}
-
-li {
-    float: left;
-    width: 200px;
-}
-
-a:link, a:visited {
-    display: block;
-    width: 120px;
-    font-weight: bold;
-    color: #FFFFFF;
-    background-color: #006666;
-    text-align: center;
-    padding: 4px;
-    text-decoration: none;
-    text-transform: uppercase
-}
-
-a:hover, a:active {
-    background-color: #F88000;
-}
-
-*/
